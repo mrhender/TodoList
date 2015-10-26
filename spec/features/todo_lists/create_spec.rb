@@ -36,7 +36,7 @@ describe "Creating todo lists" do
     expect(List.count).to eq(0)
 
     create_todo_list description: ""
-  
+
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
 
