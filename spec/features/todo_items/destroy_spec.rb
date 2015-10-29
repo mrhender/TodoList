@@ -4,6 +4,8 @@ describe "Editing todo items" do
   let!(:list) { List.create(title: "Grocery list", description: :"Groceries")}
   let!(:item) { list.items.create(content: "Milk")}
 
+## visit_list(list) is included from todo_list_helpers.rb
+
   it "is successful" do
     visit_list(list)
     within "#item_#{item.id}" do

@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "Adding todo items" do
   let!(:list) { List.create(title: "Grocery list", description: :"Groceries")}
 
+## visit_list(list) is included from todo_list_helpers.rb
+
   it "is successful with valid content" do
     visit_list(list)
     click_link "New Item"

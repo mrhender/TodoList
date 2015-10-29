@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Viewing todo items" do
   let!(:list) { List.create(title: "Grocery list", description: :"Groceries")}
+  
+## visit_list(list) is included from todo_list_helpers.rb
 
   it "displays the title of the todo list"do
   visit_list(list)
