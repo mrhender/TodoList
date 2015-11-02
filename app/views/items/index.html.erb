@@ -1,16 +1,33 @@
 <h1><%= @list.title %></h1>
 
 <table class="items">
+  <table class="items">
+  <thead>
+    <tr>
+        <th width="25%">Completed?</th>
+        <th width="65%">Content</th>
+        <th width="10%">Functions</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @list.items.each do |item| %>
   <tr id="<%= dom_id(item) %>">
+    <td>
+      <% if item.completed? %>
+        <%= item.completed_at %>
+      <% else %>
+      <%= link_to "Mark Complete", complete_list_item_path(item),
+        method: :patch %>
+      <% end %>
+    </td>
     <td><%= item.content %></td>
     <td>
-      <%= link_to "Mark Complete", complete_list_item_path(item), method: :patch %>
       <%= link_to "Edit", edit_list_item_path(item) %>
       <%= link_to "Delete", list_item_path(item), method: :delete,
       data: { confirm: "Are you sure? "} %></td>
   </tr>
   <% end %>
+</tbody>
 </table>
 
 <p>

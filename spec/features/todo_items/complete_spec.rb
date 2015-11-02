@@ -13,4 +13,22 @@ describe "Completed todo items" do
     item.reload
     expect(item.completed_at).to_not be_nil
   end
+
+  context "with completed items" do
+    let!(:completed_item) {list.items.create(content: "Eggs", completed_at: 5.minutes.ago) }
+
+    it "shows completed items as complete" do
+      visit_list(list)
+      within dom_id_for(completed_item) do
+        expect(page).to have_content(completed_item.completed_at)
+      end
+    end
+
+    it "does not give option to mark compelte" do
+      visit_list(list)
+      within dom_id_for(completed_item) do
+        expect(page).to_not have_content("Mark Complete")
+      end
+    end
+  end
 end
