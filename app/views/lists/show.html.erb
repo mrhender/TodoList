@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @list.title %></h1>
+<h2><%= @list.description %></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
+<% if @list.has_incomplete_items? %>
+<h3>Incomplete Items:</h3>
 
-<p>
-  <strong>Description:</strong>
-  <%= @list.description %>
-</p>
+<ul>
+  <% @list.items.incomplete.each do |item| %>
+  <li><%= item.content %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<% if @list.has_completed_items? %>
+<h3>Complete Items:</h3>
+
+<ul>
+  <% @list.items.complete.each do |item| %>
+  <li><%= item.content %></li>
+  <% end %>
+</ul>
+<% end %>
 
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>
